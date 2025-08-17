@@ -1,0 +1,54 @@
+
+plugins {
+    id 'com.android.application'
+    
+}
+
+android {
+    namespace "${rootProject.ext.baseGroup}.andlogger"
+    compileSdk rootProject.ext.compileSdk
+    
+    def buildToolsVersion = rootProject.ext.buildToolsVersion
+    if (buildToolsVersion != null) {
+        buildToolsVersion = buildToolsVersion
+    }
+    
+    defaultConfig {
+        applicationId "${rootProject.ext.baseGroup}.andlogger"
+        minSdk rootProject.ext.minSdk
+        targetSdk rootProject.ext.targetSdk
+        versionCode rootProject.ext.app.versionCode
+        versionName rootProject.ext.app.versionName
+        
+        vectorDrawables { 
+            useSupportLibrary true
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    buildFeatures {
+        viewBinding true
+        
+    }
+    
+}
+
+dependencies {
+
+
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation("com.google.android.material:material:1.9.0")
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    api(project(":logger"))
+}
